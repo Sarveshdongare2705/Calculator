@@ -1,0 +1,30 @@
+.App{
+  font-family: 'Courier New', Courier, monospace;
+}
+.home{
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .home{
+    display: flex;
+    flex-direction: column;
+  }
+  .logo{
+    display: none;
+  }
+  .user{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .Header{
+      display: flex;
+      flex-direction: row;
+  }
+}

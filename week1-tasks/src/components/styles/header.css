@@ -1,0 +1,32 @@
+.Header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgb(77, 201, 242);
+    margin: 10px;
+    padding: 10px;
+}
+.logo{
+    font-size: 30px;
+    font-weight: bold;
+}
+.user{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.name{
+    font-size: 20px;
+}
+button{
+    padding: 10px;
+    background-color: rgb(77, 201, 242);
+    color: white;
+    border: 2px solid rgb(77, 201, 242);
+    border: none;
+    border-radius: 20px;
+    width: 70px;
+    cursor: pointer;
+}
+
+
