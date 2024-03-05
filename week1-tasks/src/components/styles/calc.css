@@ -43,17 +43,5 @@
     cursor: pointer;
 }
 @media only screen and (max-width: 768px) {
-    .output{
-        width: 240px;
-    }
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        padding: -20px;
-      }
-    .gridbutton{
-        width: 40px;
-        height: 40px;
-        font-size: 10px;
-    }
+
 }

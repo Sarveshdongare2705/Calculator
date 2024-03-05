@@ -2,7 +2,17 @@
     width: 800px;
     height: 440px;
     margin-top: 60px;
-    border: 1px solid black;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+}
+.delete{
+    background-color: white;
+    color: black;
+    width: 20px;
+    height: 20px;
+    align-items: center;
+    padding: 5px;
+    margin-top: -13px;
 }
 @media only screen and (max-width: 768px) {
     .Memory{
@@ -28,6 +38,12 @@
     margin-top: 10px;
     margin-bottom: 10px;
     border-bottom: 1px solid lightgray;
+}
+.item2{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
 }
 .time{
     font-size: 10px;

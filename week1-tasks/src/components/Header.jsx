@@ -28,13 +28,15 @@ const Header = () =>{
         <div className="Header">
             <div className="logo">Calculator</div>
             <div className="user">
-                <div className="name">Welcome! {user? user.displayName : 'Guest'}</div>
+                <div className="name"><span>Welcome!  </span><span>{user? user.displayName : 'Guest'}</span></div>
+                <div>
                 {
                     user?
                     <button className="" onClick={handleSignOut}>Logout</button>
                     :
                     <button className="" onClick={handleGoogleSignIn}>Sign In</button>
                 }
+                </div>
             </div>
         </div>
     )

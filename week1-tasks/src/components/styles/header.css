@@ -28,5 +28,17 @@ button{
     width: 70px;
     cursor: pointer;
 }
-
+@media only screen and (max-width: 768px) {
+    .name{
+        display: flex;
+        flex-direction: column;
+        font-size: 16px;
+    }
+    .user{
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
 

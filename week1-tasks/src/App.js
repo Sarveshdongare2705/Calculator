@@ -9,6 +9,7 @@ function App() {
       <AuthContextProvider>
       <div className='header'>
         <Header />
+        
       </div>
       <div className='home'>
         <div className='item'><Calc /></div>
