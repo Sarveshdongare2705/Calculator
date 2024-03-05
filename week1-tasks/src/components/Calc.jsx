@@ -5,42 +5,20 @@ import { storeEquationHistory } from "../firebaseUtils";
 const Calc = () => {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('0');
-  const buttons = ['AC', 'DEL', '%', '/', '7', '8', '9', '*', '4', '5', '6', '-', '1', '2', '3', '+', '00', '0', '.', '='];
+  const buttons = ['AC', 'DEL', '%', '/', '7', '8', '9', '*', '4', '5', '6', '-', '1', '2', '3', '+', '00', '0', '.', 'π', '(', ')', '√', 'sin', 'cos', 'tan', '^' , '='];
 
   const calculate = (input) => {
     try {
-      const operators = /[+\-*/]/g;
-      const numbers = input.split(operators).map(Number);
-      const operations = input.match(operators);
+      const replacedInput = input.replace(/sin/g, 'Math.sin')
+                                 .replace(/cos/g, 'Math.cos')
+                                 .replace(/tan/g, 'Math.tan')
+                                 .replace(/√/g, 'Math.sqrt')
+                                 .replace(/\^/g, '**')
+                                 .replace(/π/g, 'Math.PI');
   
-      let result = numbers[0];
-  
-      for (let i = 0; i < operations.length; i++) {
-        const currentOperator = operations[i];
-        const next = numbers[i + 1];
-  
-        switch (currentOperator) {
-        case '+':
-            result += next;
-            break;
-        case '-':
-            result -= next;
-            break;
-        case '*':
-            result *= next;
-            break;
-        case '**':
-                result = Math.pow(result , next);
-                break;
-        case '/':
-            result /= next;
-            break;
-        default:
-            throw new Error('Error: Invalid operator');
-        }
-      }
-  
-      return String(result);
+      const result = eval(replacedInput);
+      const roundedResult = Number(result.toFixed(4));
+      return String(roundedResult);
     } catch (error) {
       return 'Error';
     }
