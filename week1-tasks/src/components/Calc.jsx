@@ -9,20 +9,78 @@ const Calc = () => {
 
   const calculate = (input) => {
     try {
-      const replacedInput = input.replace(/sin/g, 'Math.sin')
-                                 .replace(/cos/g, 'Math.cos')
-                                 .replace(/tan/g, 'Math.tan')
-                                 .replace(/√/g, 'Math.sqrt')
-                                 .replace(/\^/g, '**')
-                                 .replace(/π/g, 'Math.PI');
-  
-      const result = eval(replacedInput);
+      const parsedInput = parseInput(input);
+      const result = evaluate(parsedInput);
       const roundedResult = Number(result.toFixed(4));
       return String(roundedResult);
     } catch (error) {
       return 'Error';
     }
   };
+  
+  const parseInput = (input) => {
+    return input.split(/([+\-*/^()])/).filter(token => token.trim() !== '');
+  };
+  const evaluate = (tokens) => {
+    const operators = [];
+    const operands = [];
+  
+    const applyOperation = (operator, operands) => {
+      const b = operands.pop();
+      const a = operands.pop();
+  
+      switch (operator) {
+        case '+':
+          operands.push(a + b);
+          break;
+        case '-':
+          operands.push(a - b);
+          break;
+        case '*':
+          operands.push(a * b);
+          break;
+        case '/':
+          operands.push(a / b);
+          break;
+        case '^':
+          operands.push(Math.pow(a, b));
+          break;
+        case 'sin':
+          operands.push(Math.sin(b));
+          break;
+        case 'sin':
+          operands.push(Math.cos(b));
+          break;
+        case 'tan':
+          operands.push(Math.tan(b));
+          break;
+        default:
+          throw new Error('Invalid operator: ' + operator);
+      }
+    };
+  
+    for (const token of tokens) {
+      if (token === '+' || token === '-' || token === '*' || token === '/' || token === '^' || token === 'sin' || token === 'cos'|| token === 'tan') {
+        operators.push(token);
+      } else if (token === '(') {
+        operators.push(token);
+      } else if (token === ')') {
+        while (operators.length > 0 && operators[operators.length - 1] !== '(') {
+          applyOperation(operators.pop(), operands);
+        }
+        operators.pop(); 
+      } else {
+        operands.push(parseFloat(token));
+      }
+    }
+  
+    while (operators.length > 0) {
+      applyOperation(operators.pop(), operands);
+    }
+  
+    return operands[0];
+  };
+  
   
 
   const handleButtonClick = (value) => {
@@ -41,7 +99,9 @@ const Calc = () => {
         setInput('');
         setOutput('Error');
       }
-    } else {
+    }  else if (value === 'π') {
+      setInput((prevInput) => prevInput + '3.14');}
+    else {
       setInput((prevInput) => prevInput + value);
     }
   };
